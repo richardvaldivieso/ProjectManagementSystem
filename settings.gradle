@@ -1,0 +1,12 @@
+rootProject.name = 'ProjectManagementSystem'
+include 'core/billing-service'
+findProject(':core/billing-service')?.name = 'billing-service'
+include 'core/booking-service'
+findProject(':core/booking-service')?.name = 'booking-service'
+include 'core/inventory-service'
+findProject(':core/inventory-service')?.name = 'inventory-service'
+include 'core/availability-service'
+findProject(':core/availability-service')?.name = 'availability-service'
+include 'common/common-service'
+findProject(':common/common-service')?.name = 'common-service'
+
