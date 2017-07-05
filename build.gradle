@@ -1,17 +1,35 @@
-group 'com.pms'
-version '1.0-SNAPSHOT'
+allprojects {
+    group 'com.pms'
 
-apply plugin: 'java'
+    version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+    apply plugin: 'java'
 
-repositories {
-    mavenCentral()
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    buildscript {
+        ext {
+            springBootVersion = '1.5.4.RELEASE'
+            springBOMVersion = 'Dalston.SR1'
+        }
+        repositories {
+            mavenCentral()
+        }
+        dependencies {
+            classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.4.RELEASE'
+            classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
+        }
+    }
+
+}
+subprojects {
+    dependencies {
+        compile group: 'org.springframework.boot', name: 'spring-boot', version: '1.5.4.RELEASE'
+        compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '1.5.4.RELEASE'
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.4.RELEASE'
+        testCompile group: 'org.junit.platform', name:'junit-platform-runner', version: '1.0.0-M4'
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0-M4'
+    }
 }
 
-dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot', version: '1.5.4.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '1.5.4.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.4.RELEASE'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0-M4'
-}
